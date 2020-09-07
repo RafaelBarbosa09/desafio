@@ -25,10 +25,20 @@ interface Ordem {
   consumo: number;
 }
 
+interface Cobertura {
+  cobertura: string;
+}
+
+interface GrauDeRisco {
+  grauDeRisco: string
+}
+
 const Polo:React.FC = () => {
   const { params } = useRouteMatch<PoloParams>();
 
   const [polo, setPolo] = useState<Polo | null>(null);
+  const [cobertura, setCobertura] = useState<Cobertura | null>(null);
+  const [grauDeRisco, setGrauDeRisco] = useState<GrauDeRisco | null>(null);
   const [ordens, setOrdens] = useState<Ordem[]>([]);
 
   useEffect(() => {
@@ -37,9 +47,17 @@ const Polo:React.FC = () => {
     });
     
     api.get(`ordens-de-servico/busca-por-base/${params.id}`).then(response => {
-      console.log(params.id)
-      console.log(response.data);
       setOrdens(response.data);
+    });
+
+    api.get(`polos/cobertura/${params.id}`).then(response => {
+      console.log(response.data)
+      setCobertura(response.data);
+    });
+
+    api.get(`polos/grau-de-risco/${params.id}`).then(response => {
+      console.log(response.data)
+      setGrauDeRisco(response.data);
     });
 
   }, [params.id]);
@@ -60,6 +78,7 @@ const Polo:React.FC = () => {
           <div>   
             <strong>{polo?.base}</strong>
             <p>Ordens de serviço do polo nos últimos 6 meses</p>
+            <p>{grauDeRisco?.grauDeRisco}</p>
           </div>
         </header>
         <ul>
@@ -74,7 +93,7 @@ const Polo:React.FC = () => {
           </li>
 
           <li>
-            <strong>6</strong>
+            <strong>{cobertura?.cobertura}</strong>
             <span>Dias de cobertura</span>
           </li>
         </ul>
@@ -82,7 +101,7 @@ const Polo:React.FC = () => {
 
       <OrdensDeServico>
         {ordens.map(ordem => (  
-          <Link  to={`/ordens-de-servico/${ordem.id}`}>
+          <Link key={ordem.id} to={`/ordens-de-servico/${ordem.id}`}>
             <div>
               <strong>{ordem.estado}</strong>
               <p>{ordem.data}</p>

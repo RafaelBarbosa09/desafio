@@ -46,28 +46,28 @@ polosRouter.post('/', async (request, response) => {
 /*
   Essa rota deve retornar o cálculo da cobertura em dias 
   */
- polosRouter.get('/cobertura', async (request, response) => {
+ polosRouter.get('/cobertura/:base', async (request, response) => {
 
-  const { base } = request.body;
+  const { base } = request.params;
 
   const retornaCobertura = new RetornaCoberturaPorPeriodoService(); 
 
   const cobertura = await retornaCobertura.calculaCoberturaPorperiodo({base});
 
-  return response.json({cobertura});
+  return response.json(cobertura);
 });
 
 /*
   Essa rota deve retornar o grau de risco em que o polo se encontra
 */
-polosRouter.get('/grau-de-risco', async (request, response) => {
+polosRouter.get('/grau-de-risco/:base', async (request, response) => {
 
-  const { base } = request.body;
+  const { base } = request.params;
 
   const grauDeRiscoService = new DefineGrauDeRiscoService();
   const grauDeRisco = await grauDeRiscoService.retornaGrauDeRisco({base});
 
-  return response.json({grauDeRisco});
+  return response.json(grauDeRisco);
 });
 
 export default polosRouter;

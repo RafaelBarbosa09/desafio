@@ -14,7 +14,7 @@ ordensRouter.get('/', async (request, response) => {
   const ordemDeServicoRepository = getCustomRepository(OrdemDeServicoRepository);
   const ordensDeServicoEncontradas = await ordemDeServicoRepository.find();
 
-  return response.json({ordensDeServicoEncontradas});
+  return response.json(ordensDeServicoEncontradas);
 });
 
 /*

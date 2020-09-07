@@ -20,7 +20,6 @@ const Dashboard:React.FC = () => {
 
   useEffect(() => {
     api.get('polos').then(response => {
-      console.log(response.data)
       setPolos(response.data);
     })
   }, []);
@@ -35,7 +34,6 @@ const Dashboard:React.FC = () => {
           <Link key={polo.id} to={`/polo/${polo.id}`}>
             <div>
               <strong>{polo.base}</strong>
-              <p>situação do polo</p>
             </div>
             <strong>{polo.estoque} terminais</strong>
             <FiChevronRight size={20} />
