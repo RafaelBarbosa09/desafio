@@ -18,6 +18,17 @@ polosRouter.get('/', async (request, response) => {
 });
 
 /*
+  Essa rota deve todos o polo pelo id
+*/
+polosRouter.get('/:id', async (request, response) => {
+  const { id } = request.params;
+
+  const poloRepository = getCustomRepository(PoloRepository);
+  const polo = await poloRepository.findOne({id});
+  return response.json(polo);
+});
+
+/*
   Essa rota deve criar novos polos
 */
 polosRouter.post('/', async (request, response) => {

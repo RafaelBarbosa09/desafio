@@ -6,7 +6,9 @@ import Polo from '../pages/Polo';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" component={Dashboard}/>
+    <Route path="/" exact component={Dashboard}/>
+    <Route path="/polo/:id+" component={Polo}/>
+    {/* :id */}
   </Switch>
 );
 

@@ -39,17 +39,17 @@ ordensRouter.post('/', async (request, response) => {
 });
 
 /*
-  Essa rota deve retornar a ordem de serviço de acordo com o id do polo
+  Essa rota deve retornar as ordens de serviço de acordo com o id do polo
   */
-ordensRouter.get('/busca-por-base', async (request, response) => {
+ordensRouter.get('/busca-por-base/:base', async (request, response) => {
 
-  const { base } = request.body;
+  const { base } = request.params;
 
   const ordemDeServicoPorBase = new BuscaOrdemPorBaseService();
 
   const ordensDeServico = await ordemDeServicoPorBase.buscaOrdemDeServicoPorBase({ base });
 
-  return response.json({ ordensDeServico });
+  return response.json(ordensDeServico);
 });
 
 export default ordensRouter;
