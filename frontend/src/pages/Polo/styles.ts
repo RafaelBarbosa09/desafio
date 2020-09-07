@@ -73,7 +73,7 @@ export const PoloInfo = styled.section`
 `;
 
 export const OrdensDeServico = styled.div`
-  margin-top: 80px;
+  margin-top: 20px;
 
   a {
     background: #fff;
@@ -117,5 +117,22 @@ export const OrdensDeServico = styled.div`
     svg {
       color: #cbcbd6;
     }
+  }
+`;
+
+export const AdicionaOrdem = styled.div`
+  margin-top: 80px;
+  background: #0DB14B;
+  border-radius: 2px;
+  max-width: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
   }
 `;

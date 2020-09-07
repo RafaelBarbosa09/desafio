@@ -5,7 +5,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import logo from '../../assets/logo.png';
 import api from '../../services/api';
 
-import { Header, PoloInfo, OrdensDeServico } from './styles';
+import { Header, PoloInfo, OrdensDeServico, AdicionaOrdem } from './styles';
 
 interface PoloParams {
   id: string;
@@ -97,6 +97,13 @@ const Polo:React.FC = () => {
             <span>Dias de cobertura</span>
           </li>
         </ul>
+
+        <AdicionaOrdem>
+          <Link className="novo" to="teste">
+            Nova OS
+          </Link>
+        </AdicionaOrdem>
+
       </PoloInfo>
 
       <OrdensDeServico>
