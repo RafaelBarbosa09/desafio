@@ -26,7 +26,7 @@ ordensRouter.post('/', async (request, response) => {
     const criarOrdemDeServico = new CriarOrdemDeServicoService();
 
     const ordemDeServico = await criarOrdemDeServico.execute({ 
-      data,
+      data: new Date(),
       base_id,
       estado,
       consumo,

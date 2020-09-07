@@ -51,12 +51,10 @@ const Polo:React.FC = () => {
     });
 
     api.get(`polos/cobertura/${params.id}`).then(response => {
-      console.log(response.data)
       setCobertura(response.data);
     });
 
     api.get(`polos/grau-de-risco/${params.id}`).then(response => {
-      console.log(response.data)
       setGrauDeRisco(response.data);
     });
 
@@ -77,13 +75,12 @@ const Polo:React.FC = () => {
         <header>
           <div>   
             <strong>{polo?.base}</strong>
-            <p>Ordens de serviço do polo nos últimos 6 meses</p>
-            <p>{grauDeRisco?.grauDeRisco}</p>
+            <p>{grauDeRisco}</p>
           </div>
         </header>
         <ul>
           <li>
-            <strong>8</strong>
+            <strong>{ordens.length}</strong>
             <span>Ordens de serviço</span>
           </li>
 
@@ -93,13 +90,13 @@ const Polo:React.FC = () => {
           </li>
 
           <li>
-            <strong>{cobertura?.cobertura}</strong>
+            <strong>{cobertura}</strong>
             <span>Dias de cobertura</span>
           </li>
         </ul>
 
         <AdicionaOrdem>
-          <Link className="novo" to="teste">
+          <Link className="novo" to={`/nova-ordem/${params.id}`}>
             Nova OS
           </Link>
         </AdicionaOrdem>
